@@ -11,17 +11,21 @@ import Home from './Components/Home'
 import Layout from './Layout'
 import './index.css'
 import Tips from './Components/Tips'
+import LogIn from './Components/LogIn'
+import SignUp from './Components/SignUp'
+import Dashboard from './Components/Dashboard'
+import Feedback from './Components/Feedback'
 
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />} >
-    <Route index element={<Home/>}/>
-    <Route path='/dashboard' element={<h1>Dashbored Page</h1>}/>
+    <Route index element={<Home />}/>
+    <Route path='/dashboard' element={<Dashboard />}/>
     <Route path='/setting'  element={<h1>Setting Page</h1>}/>
-    <Route path='/feedback' element={<h1>Feedback Page</h1>}/>
+    <Route path='/feedback' element={<Feedback />}/>
     <Route path='/tips' element={<Tips />}/>
-    <Route path='/signUp'element={<h1>Sign up Page</h1>}/>
-    <Route path='/logIn' element={<h1>Log in Page</h1>}/>
+    <Route path='/signUp'element={<SignUp /> }/>
+    <Route path='/logIn' element={<LogIn />}/>
   </Route>
 ))
 

@@ -17,8 +17,8 @@ export default function Navbar() {
     <nav className={style.navbar}>
         <Link to='/'> <img src={Icon} className={style.icons} /> </Link>
         <div className={style.mainNavOption} >
-          <Link to='/dashboard'><LuLayoutDashboard className={style.icons} /></Link>
           <Link to='/'><IoHome className={style.icons} /></Link>
+          <Link to='/dashboard'><LuLayoutDashboard className={style.icons} /></Link>
           <Link to='/setting'><VscSettings className={style.icons} /></Link>
           <Link to='/feedback'><VscFeedback className={style.icons} /></Link>
           <Link to='/tips'><MdOutlineTipsAndUpdates className={style.icons} /></Link>

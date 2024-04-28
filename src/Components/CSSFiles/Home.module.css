@@ -1,149 +1,30 @@
-.homepage{
-    margin: 0;
-    padding: 0;
-    color: white;
-    margin-left: 100px;
-}
-.headerText{
-    padding: 10px;
-    font-weight: 400;
-}
-.secondDiv{
-    h1{
-        font-size: 30px;
-        font-weight: 500;
-    }
-}
-.secondDiv{
-    display: flex;
-    position: absolute;
-    top: 70px;
-    right: 2%;
-    left: 95px;
-    bottom: 10px;
-    h1{
-        font-size: 20px;
-    }
-    padding: 10px;
-    /* background-color: rgb(137, 194, 244); */
-}
-.games{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    background-color: #181c2c;  
-    h1{
-        margin: 5px 40px;
-        padding: 5px;
-        font-size: 24px; 
-    }
-}
-.words{
-    margin: 10px;
-    padding: 15px;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: center;
-    height: 50%;
-    gap: 10px;
-    border-radius: 20px;
-    h3{
-        font-size: 22px;
-    }
-    p{
-        font-size: 18px;
-    }
-
-    background-color: rgb(36, 39, 57);
-}
-
-.score{
-    width: 50%;
-    h1{
-        margin: 5px 40px;
-        padding: 5px;
-        font-size: 24px; 
-    }
-
-    /* background-color: rgb(166, 190, 82); */
-}
-.scoreItems {
-    margin: 10px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    height: 55px;
-    gap: 20px;
-}
-.bestScoreList{
-    font-size: 20px; 
-    font-weight: 300;
-    font-weight: 400;
-    margin-left: 40px;
-}
-/* Profile detail css */
-    .winnerName{
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        h3{
-            font-size: 24px; 
-            font-weight: 500;
-        }
-        p{
-            font-size: 20px; 
-            font-weight: 300;
-        }
-    }
-    .userProfile{
-        height: 55px;
-        border-radius: 10px;
-        width: 55px;
-    }
-    .scoreItems_rank {
-        height: 55px;
-        width: 27px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 0px solid;
-        border-radius: 10px;
-        font-size: 20px;
-        background-color: rgb(43, 56, 66);
-    }
-    .scoreItems_name,
-    .scoreItems_score {
-    display: flex;
-    flex-direction: column;
-    height: 55px;
-    justify-content: space-around;
-    p {
-        margin: 0px;
-        
-    }
-    }
-    .parColor{
-        color: rgb(120, 121, 129);
-    }
-    .scoreItems_score {
-        margin-left: auto;
-        p{
-        color: rgb(120, 121, 129); 
-        }
-    }
-    .paraSpan{
-        color: white; 
-        padding: 2px;
-    }
-
-.scoreList{
+.homePage{
     width: 100%;
-    margin: 10px;
-    padding: 10px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background-image: url('../bgImg1.jpg');
+    background-size: cover;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-}
+    justify-content: center;
+    align-items: center;
+  }
 
+  .buttonStyle{
+    margin: 10px;
+    padding: 5px;
+    width: 100px;
+    border: none;
+    border: 1px solid black;
+    color: black;
+  }
+
+  .aboutButton{
+    padding: 5px;
+    width: 220px;
+    border: none;
+    border: 1px solid black;
+    color: black;
+  }

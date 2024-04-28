@@ -5,6 +5,7 @@
   flex-direction: column;
   border-right: 1px solid #6d707e;
   height: 100vh;
+  z-index: 1;
 } 
 
 .mainNavOption{

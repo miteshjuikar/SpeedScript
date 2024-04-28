@@ -1,0 +1,48 @@
+.about_page {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 30px;
+}
+.about_page_content {
+    padding-left: 110px;
+}
+
+.about_header {
+    padding: 20px;
+    text-align: center;
+}
+
+.about_main {
+    padding: 20px;
+}
+
+.about_section {
+    margin-bottom: 30px;
+}
+
+.about_section_title {
+    color: #333;
+}
+
+.about_footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.about_section_content,
+.about_footer_content {
+    color: #666;
+}
+
+.about_section_content a {
+    color: #00f; /* Change link color as needed */
+}
+
+.about_section_content a:hover {
+    text-decoration: underline;
+}
+.footer_content{
+    padding-left: 80px;
+}

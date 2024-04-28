@@ -62,8 +62,7 @@ export default function Dashboard() {
         <div className={style.scoreList} >
         <p className={style.bestScoreList}>Best Score List</p>
             {scoreData.map((data,i)=>{
-              console.log(data.name);
-              return(<div className={style.scoreItems}>
+              return(<div className={style.scoreItems} key={i+1}>
                         <img src={Icon} className={style.userProfile} />
                         <div className={style.scoreItems_rank}>{i+1}</div>
                         <div className={style.scoreItems_name}>

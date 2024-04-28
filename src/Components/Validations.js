@@ -1,6 +1,5 @@
 const Validation = (formData) => {
     let error = {}
-    console.log(formData);
     if(!formData.name){
         error.name = "Name Required"
     }

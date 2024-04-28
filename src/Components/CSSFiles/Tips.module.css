@@ -1,0 +1,33 @@
+/* tips style */
+.typing_tips {
+    margin-left: 80px;
+    padding: 10px 40px;
+    color: white;
+    header {
+        font-size: 2rem;
+        margin: 10px;
+        padding: 5px;
+    }
+  }
+  .typing_tips ul {
+    list-style-type: none;
+    padding: 10px;
+  }
+  .typing_tips li {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .typing_tips h2 {
+    font-size: 24px;
+    text-align: center;
+    color: #ffa500;
+    font-weight: 400;
+  }
+  
+  .typing_tips p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #959697;
+    line-height: 1.5;
+  }

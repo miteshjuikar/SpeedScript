@@ -1,0 +1,23 @@
+.navbar{
+  margin: 10px 0px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #6d707e;
+  height: 100vh;
+} 
+
+.mainNavOption{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.icons{
+  width: 22px;
+  height: 22px;
+  margin: 25px;
+  color: #6d707e;
+  transition: fill 0.1s ease-in-out;
+}

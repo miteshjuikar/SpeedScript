@@ -2,16 +2,19 @@ import React from 'react'
 import style from './CSSFiles/Dashboard.module.css'
 import { TypeAnimation } from "react-type-animation";
 import Icon from '../assets/typingSymbol.png'
-
- const scoreData =  [
-                    {"name":"Mitesh Juikar","score":1000,"speed":16},
-                    {"name":"Parag bhosale","score":900,"speed":18},
-                    {"name":"Yogesh Juikar","score":800,"speed":20},
-                    {"name":"Siddhant Juikar","score":700,"speed":22}
-                  ]
+import { useNavigate } from 'react-router-dom';
                   
-
 export default function Dashboard() {
+
+  const scoreData =  [
+    {"name":"Mitesh Juikar","score":1000,"speed":16},
+    {"name":"Parag bhosale","score":900,"speed":18},
+    {"name":"Yogesh Juikar","score":800,"speed":20},
+    {"name":"Siddhant Juikar","score":700,"speed":22}
+  ]
+
+  const navigate = useNavigate();
+
   return (
     <div className={style.homepage}>
       <div>
@@ -38,7 +41,7 @@ export default function Dashboard() {
               Race against the clock, typing words accurately to sprint your way
               to victory and improve your typing speed!
             </p>
-            <button type="button" className="btn btn-primary">START</button>
+            <button type="button" className="btn btn-primary" onClick={()=>{navigate('/wordRace')}}>START</button>
           </div>
           <div className={style.words}>
             <div className="games-logo">
@@ -48,7 +51,7 @@ export default function Dashboard() {
               Sharpen your typing skills by typing out paragraphs under the
               pressure of time. And measure your WPM.
             </p>
-            <button type="button" className="btn btn-primary">START</button>
+            <button type="button" className="btn btn-primary" onClick={()=>{navigate('/sentenceRace')}}>START</button>
           </div>
         </div>
 

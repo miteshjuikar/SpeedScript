@@ -15,12 +15,16 @@ import LogIn from './Components/LogIn'
 import SignUp from './Components/SignUp'
 import Dashboard from './Components/Dashboard'
 import Feedback from './Components/Feedback'
+import WordRace from './Components/Games/WordRace'
+import SentenceRace from './Components/Games/SentenceRace'
 
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />} >
     <Route index element={<Home />}/>
     <Route path='/dashboard' element={<Dashboard />}/>
+    <Route path='/wordRace' element={<WordRace />}/>
+    <Route path='/sentenceRace' element={<SentenceRace />}/>
     <Route path='/setting'  element={<h1>Setting Page</h1>}/>
     <Route path='/feedback' element={<Feedback />}/>
     <Route path='/tips' element={<Tips />}/>

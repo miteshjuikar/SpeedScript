@@ -47,6 +47,7 @@ export default function SentenceRace() {
     else if(timeLeft === 0){
       clearInterval(interval);
       setIsTyping(false);
+      
     }
     return () => {
       clearInterval(interval);

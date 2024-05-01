@@ -6,7 +6,6 @@
 .about_page_content {
     padding-left: 110px;
 }
-
 .about_header {
     padding: 20px;
     text-align: center;
@@ -18,14 +17,20 @@
 
 .about_section {
     margin-bottom: 30px;
+    li{
+        color: #dedee0;
+    }
+    p{
+        color: #6d707e;
+    }
 }
 
 .about_section_title {
-    color: #333;
+    color: #dedee0;
 }
 
 .about_footer {
-    background-color: #333;
+    background-color: #2d2c45;
     color: #fff;
     padding: 20px;
     text-align: center;

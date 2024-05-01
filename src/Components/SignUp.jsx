@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
         
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from './firebase';
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc, updateDoc } from "firebase/firestore"; 
 
 
 
@@ -26,31 +26,50 @@ export default function SignUp() {
         }))
     }
 
-    const handleSubmit = async(e) => {
-        e.preventDefault()
-        setError(Validation(signUpData));
+const handleSubmit = async(e) => {
+    e.preventDefault()
+    setError(Validation(signUpData));
+    const email = signUpData.email;
+    const password = signUpData.password;
+    try {
+//Create userId 
+        const res = await createUserWithEmailAndPassword(auth, email, password);
+        const user = res.user;
 
-        const email = signUpData.email;
-        const password = signUpData.password;
-        try {
-        //Create userId 
-            const res = await createUserWithEmailAndPassword(auth, email, password);
-            const user = res.user;
-
-        //Set new data in firestore to respective user id
-            await setDoc(doc(db, "userData", user.uid), {
-                id:user.uid,
-                name: signUpData.name,
-                email: signUpData.email,
-                photo: photoURL[Math.floor((Math.random() * 7) + 1)],
-                myScore: 0
-              });
-        navigate("/logIn");
-        }
-        catch (err) {
-            alert( err.code, err.message);
-        }   
+//Set new data in firestore to respective user id
+        await setDoc(doc(db, "userData", user.uid), {
+            id:user.uid,
+            name: signUpData.name,
+            email: signUpData.email,
+            photo: photoURL[Math.floor((Math.random() * 7) + 1)],
+            myScore: 0,
+            wpm: 0
+        });
+              
+              
+ //Updated highscore in database
+          const docRef = doc(db, 'userData', 'highScore');
+          
+          // Data to be updated in the document
+          const updatedData = {
+            highScore: 12
+          };
+          
+          // Update the document with the specified data
+          updateDoc(docRef, updatedData)
+            .then(() => {
+              console.log('Document updated successfully.');
+            })
+            .catch((error) => {
+              console.error('Error updating document:', error);
+            });
+    
+            navigate("/logIn");
     }
+    catch (err) {
+        alert( err.code, err.message);
+    }   
+}
 
   return (
     

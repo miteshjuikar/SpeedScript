@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import style from './CSSFiles/Navbar.module.css'
 import Icon from '../assets/typingSymbol.png'
 
@@ -12,18 +12,25 @@ import { IoIosLogIn } from "react-icons/io";
 
 
 export default function Navbar() {
+
+  const activeStyle = {
+    fontWeight: "bold",
+    backgroundColor: "rgb(36, 39, 57)"
+  }
+
   return (
     <>
     <nav className={style.navbar}>
         <Link to='/'> <img src={Icon} className={style.icons} /> </Link>
         <div className={style.mainNavOption} >
-          <Link to='/'><IoHome className={style.icons} /></Link>
-          <Link to='/dashboard'><LuLayoutDashboard className={style.icons} /></Link>
-          <Link to='/setting'><VscSettings className={style.icons} /></Link>
-          <Link to='/feedback'><VscFeedback className={style.icons} /></Link>
-          <Link to='/tips'><MdOutlineTipsAndUpdates className={style.icons} /></Link>
+          <NavLink to='/' style={({isActive}) => isActive ? activeStyle : null} ><IoHome className={style.icons} /></NavLink>
+          <NavLink to='/dashboard' style={({isActive}) => isActive ? activeStyle : null} ><LuLayoutDashboard className={style.icons} /></NavLink>
+
+          <NavLink to='/setting' style={({isActive}) => isActive ? activeStyle : null}><VscSettings className={style.icons} /></NavLink>
+          <NavLink to='/feedback' style={({isActive}) => isActive ? activeStyle : null}><VscFeedback className={style.icons} /></NavLink>
+          <NavLink to='/tips' style={({isActive}) => isActive ? activeStyle : null}><MdOutlineTipsAndUpdates className={style.icons} /></NavLink>
         </div>
-        <Link to='/logIn'><IoIosLogIn className={style.icons} /></Link>
+        <NavLink to='/logIn' style={({isActive}) => isActive ? activeStyle : null}><IoIosLogIn className={style.icons} /></NavLink>
     </nav>
     </>
   )

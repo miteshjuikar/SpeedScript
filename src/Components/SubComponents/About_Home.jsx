@@ -1,8 +1,8 @@
 import React from 'react'
-import style from './CSSFiles/About.module.css'
+import style from '../CSSFiles/Home.module.css'
 import { Link } from 'react-router-dom'
 
-export default function About() {
+export default function About_Home() {
   return (
     <div className={style.about_page} >
         <div className={style.about_page_content} >

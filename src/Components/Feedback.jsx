@@ -20,9 +20,9 @@ export default function Feedback() {
 
 
   return (
+    <div className={style.mainFeedback}>
     <div className={style.feedback_container}>
         <header>Feedback Form</header>
-
         <form onSubmit={handleSubmit}>
         <div className="mb-3">
             <label htmlFor="name" className="form-label">Full Name</label>
@@ -75,6 +75,7 @@ export default function Feedback() {
           {submit ? "Submit" : "submitting"}
         </button>
     </form>
+    </div>
     </div>
   )
 }

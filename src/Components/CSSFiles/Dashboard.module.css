@@ -1,8 +1,10 @@
-.homepage{
+.dashboardpage{
     margin: 0;
     padding: 0;
     color: white;
-    margin-left: 100px;
+    margin-left: 90px;
+    /* height: 100vh;
+    min-width: 1190px; */
 }
 .headerText{
     padding: 10px;
@@ -28,7 +30,7 @@
     /* background-color: rgb(137, 194, 244); */
 }
 .games{
-    width: 50%;
+    min-width: 560px;
     display: flex;
     flex-direction: column;
     background-color: #181c2c;  
@@ -47,6 +49,7 @@
     align-items: center;
     align-self: center;
     height: 500px;
+    min-width: 480px;
     gap: 10px;
     border-radius: 20px;
     h3{
@@ -60,7 +63,7 @@
 }
 
 .score{
-    width: 50%;
+    min-width: 560px;
     h1{
         margin: 5px 40px;
         padding: 5px;
@@ -140,7 +143,7 @@
     }
 
 .scoreList{
-    width: 100%;
+    min-width: 540px;
     margin: 10px;
     padding: 10px;
     display: flex;

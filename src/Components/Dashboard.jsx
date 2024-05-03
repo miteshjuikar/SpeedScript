@@ -16,7 +16,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   return (
-    <div className={style.homepage}>
+    <div className={style.dashboardpage}>
       <div>
         <h2 className={style.headerText}>
           <TypeAnimation

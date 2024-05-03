@@ -1,17 +1,26 @@
-.feedback_container{
+.mainFeedback{
+    margin-left: 90px;
     width: 100vw;
     height: 100vh;
-    display: flex;
+}
+.feedback_container{  
+    /* display: flex;
+    height: 100vh;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+     align-items: center;
+    justify-content: center; */
+    position: absolute;
+    left: 35%;
+    top: 20px;
+   
     header{
         font-size: 36px;
         font-weight: 500;
-    }
+    } 
     form{
         width: 400px;
     }
+
 }
 .submitButton{
     position: relative;

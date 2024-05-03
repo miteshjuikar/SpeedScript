@@ -12,7 +12,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 export default function LogIn() {
 
     const [ logInData, setLogInData ] = useState({ email:"", password:"" });
-    const [ fetchData, setFetchData ] = useState();
+    const [ fetchData, setFetchData ] = useState({});
     
 const handleChnage = (e) => {
         setLogInData((pre)=> ({
@@ -31,8 +31,8 @@ const handleSubmit = async(e) => {
             //Fetching data from firestrore which was saved, when user registration
             const docSnap = await getDoc(doc(db, "userData", auth.currentUser.uid));
 
-//Store data to state by redux
-            console.log(docSnap.data());
+    //Store data to state by redux
+            setFetchData(docSnap.data());
 
         }
         catch(error){
@@ -45,46 +45,48 @@ const handleSubmit = async(e) => {
 
 //Sign In through goggle account
 
-const signInWithGoogle = async() => {
+  const signInWithGoogle = async() => {
     try{
         const res = await signInWithPopup(auth, provider);
         // The signed-in user info.
         const user = res.user;
 
-    //Storing google fetched data to firestrore
-    const docSnap = await getDoc(doc(db, "userData", user.uid));
-      if (docSnap._document === null) {
-        await setDoc(doc(db, "userData", user.uid), {
-          name: user.displayName,
-          email: user.email,
-          photo: user.photoURL,
-          wordRaceScore: 0
-        });
-        console.log(user, "1st if conditin");
+      //Storing google fetched data to firestrore
+        const docSnap = await getDoc(doc(db, "userData", user.uid));
+        
+        if (docSnap.data() === undefined || docSnap.data() === null) { //checking data is not present in database or not
+          await setDoc(doc(db, "userData", user.uid), {
+            name: user.displayName,
+            email: user.email,
+            userId: user.uid,
+            photo: user.photoURL,
+            wordRaceScore: 0,
+            WPM: 0
+          });
 
-//Store data in state by redux
-        setFetchData({
-          name: user.displayName,
-          email: user.email,
-          photo: user.photoURL,
-          wordRaceScore: 0,
-          userId: user.uid,
-          highestScoreWordRace: highestScore
-        });
+          //Store data to state by redux
+          setFetchData({
+                    name:user.displayName,
+                    email: user.email,
+                    userId: user.uid,
+                    photo: user.photoURL,
+                    wordRaceScore: 0,
+                    WPM: 0
+                  });
+          
+        }
+        else{    // Data is already present in database
+          setFetchData({
+            ...docSnap.data(),
+          });
+         }
       }
-      else{
-        setFetchData({
-          ...docSnap.data(),
-          highestScoreWordRace: highestScore,
-          userId: user.uid
-        });
-        console.log("2st if conditin");
-      }
-      }
-      catch (err) {
+    catch (err) {
         alert(err.code, err.message);
       }
 }
+
+// console.log(fetchData);
 
   return (
     <div className={style.main} >

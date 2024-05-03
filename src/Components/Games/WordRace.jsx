@@ -1,21 +1,47 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import style from '../CSSFiles/WordRace.module.css'
 import wordList from '../Words.js'
 
 export default function WordRace() {
-
+  const speed = 1.5;
+  const [top, setTop] = useState(0);
+  const [left, setLeft] = useState(100);  
   const [ rankNo, setRankNo ] = useState(10);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const word = wordList[currentWordIndex];
+
+
+  const falling_word = useMemo(() => {
+    return {
+      position: 'absolute',
+      top: `${top}px`,
+      left: `${left}px`,
+    };
+  }, [top, left]);
+
+  useEffect(() => {
+    let animationFrameId;
+    const animate = () => {
+      setTop((prevTop) => {
+        if (prevTop + speed >= 300) {
+          return 0;
+        }
+        return prevTop + speed;
+      });
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    animationFrameId = requestAnimationFrame(animate);
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
 
   return (
     <div className={style.mainWorkspace}>
       <div className={style.gameWorkspace}>
         <div className={style.workspaceContainer}>
-
-          <div className={style.falling_word} 
-                // style={style}
-          >
+          <div style={falling_word}>
             {word}
           </div>
 

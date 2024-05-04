@@ -27,15 +27,16 @@ import Authentication from './Components/Authentication'
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />} >
     <Route index element={<Home />}/>
+    
     <Route element={<Authentication />} >
       <Route path='/dashboard' element={<Dashboard />}/>
+      <Route path='/wordRace' element={<WordRace />}/>
+      <Route path='/sentenceRace' element={<SentenceRace />}/>
+      <Route path='/setting'  element={<h1>Setting Page</h1>}/>
+      <Route path='/feedback' element={<Feedback />}/>
+      <Route path='/tips' element={<Tips />}/>
     </Route>
-    
-    <Route path='/wordRace' element={<WordRace />}/>
-    <Route path='/sentenceRace' element={<SentenceRace />}/>
-    <Route path='/setting'  element={<h1>Setting Page</h1>}/>
-    <Route path='/feedback' element={<Feedback />}/>
-    <Route path='/tips' element={<Tips />}/>
+
     <Route path='/signUp'element={<SignUp /> }/>
     <Route path='/logIn' element={<LogIn />}/>
   </Route>

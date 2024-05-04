@@ -42,29 +42,10 @@ const handleSubmit = async(e) => {
             name: signUpData.name,
             email: signUpData.email,
             photo: photoURL[Math.floor((Math.random() * 7) + 1)],
-            myScore: 0,
+            wordRaceScore: 0,
             wpm: 0
         });
-              
-              
- //Updated highscore in database
-          // const docRef = doc(db, 'userData', 'highScore');
-          
-          // // Data to be updated in the document
-          // const updatedData = {
-          //   highScore: 12
-          // };
-          
-          // // Update the document with the specified data
-          // updateDoc(docRef, updatedData)
-          //   .then(() => {
-          //     console.log('Document updated successfully.');
-          //   })
-          //   .catch((error) => {
-          //     console.error('Error updating document:', error);
-          //   });
-    
-            navigate("/logIn");
+        navigate("/logIn");
     }
     catch (err) {
         alert( err.code, err.message);

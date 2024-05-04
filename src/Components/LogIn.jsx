@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Icon from '../assets/typingSymbol.png';
 import style from './CSSFiles/LogIn.module.css'
 
@@ -14,7 +14,7 @@ import { storeObject } from '../store/actions';
 export default function LogIn() {
 
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate();
 
   const [ logInData, setLogInData ] = useState({ email:"", password:"" });
   const [ fetchData, setFetchData ] = useState({});
@@ -38,6 +38,7 @@ const handleSubmit = async(e) => {
 
     //Store data to state by redux
             dispatch(storeObject(docSnap.data()));
+            navigate("/dashboard");
 
         }
         catch(error){

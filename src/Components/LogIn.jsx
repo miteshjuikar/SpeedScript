@@ -56,6 +56,7 @@ const handleSubmit = async(e) => {
         const res = await signInWithPopup(auth, provider);
         // The signed-in user info.
         const user = res.user;
+        navigate("/dashboard");
 
       //Storing google fetched data to firestrore
         const docSnap = await getDoc(doc(db, "userData", user.uid));

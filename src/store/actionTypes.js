@@ -1,0 +1,1 @@
+export const STORE_OBJECT = 'STORE_OBJECT';

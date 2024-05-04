@@ -2,7 +2,7 @@
 
 .mainWorkspace{
     display: flex;
-    margin: 10px 10px 10px 100px;
+    margin: 10px 10px 10px 90px;
     height: 550px;
 
 }
@@ -15,6 +15,7 @@
 }
 .workspaceContainer{
     height: 500px;
+    width: 900px;
     padding: 5px 10px;
 }
 

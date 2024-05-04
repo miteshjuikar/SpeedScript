@@ -1,17 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './CSSFiles/Dashboard.module.css'
 import { TypeAnimation } from "react-type-animation";
 import Icon from '../assets/typingSymbol.png'
 import { useNavigate } from 'react-router-dom';
+
+import {db } from './firebase'
+import { doc, getDoc } from "firebase/firestore"; 
                   
 export default function Dashboard() {
 
+  const [ highScore, setHighScore ] = useState(0);
+
   const scoreData =  [
-    {"name":"Mitesh Juikar","score":1000,"speed":16},
-    {"name":"Parag bhosale","score":900,"speed":18},
-    {"name":"Yogesh Juikar","score":800,"speed":20},
-    {"name":"Siddhant Juikar","score":700,"speed":22}
+    {"name":"Mitesh Juikar","wordRaceScore":1000,"WPM":16},
+    {"name":"Parag bhosale","wordRaceScore":900,"WPM":18}
   ]
+
+//fetching data from database
+  useEffect(() => {
+    const fetchHighscore = async() => {
+      try{
+        // const highScore = await getDoc(doc(db, "userData", "highScore"))
+        const docSnap = await getDoc(doc(db, "userData", "highScore"));
+        setHighScore(docSnap.data().highScore);
+      }
+      catch(error){
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      };
+    }
+    fetchHighscore();
+  },[])
 
   const navigate = useNavigate();
 
@@ -58,7 +77,7 @@ export default function Dashboard() {
         <div className={style.score}>
           <div className={style.winnerName}>
             <h3>🎊 Congratulations Mitesh Juikar 🎊</h3>
-            <p>for best typing score</p>
+            <p>for highest score of <span style={{ fontWeight: 'bold' }}>{highScore}</span></p>
           </div>
           
 
@@ -73,8 +92,8 @@ export default function Dashboard() {
                           <p>{data.name}</p>
                         </div>
                         <div className={style.scoreItems_score}>
-                        <p>{data.score}</p>
-                        <p>{data.speed}<span className={style.paraSpan}>w/m</span></p>
+                        <p>{data.wordRaceScore}</p>
+                        <p>{data.WPM}<span className={style.paraSpan}>w/m</span></p>
                         </div>
                     </div>)
             })}

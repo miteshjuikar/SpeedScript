@@ -17,12 +17,20 @@ import Dashboard from './Components/Dashboard'
 import Feedback from './Components/Feedback'
 import WordRace from './Components/Games/WordRace'
 import SentenceRace from './Components/Games/SentenceRace'
+import { Provider } from 'react-redux'
+import store from './store/store' 
+import Authentication from './Components/Authentication'
+
+
 
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />} >
     <Route index element={<Home />}/>
-    <Route path='/dashboard' element={<Dashboard />}/>
+    <Route element={<Authentication />} >
+      <Route path='/dashboard' element={<Dashboard />}/>
+    </Route>
+    
     <Route path='/wordRace' element={<WordRace />}/>
     <Route path='/sentenceRace' element={<SentenceRace />}/>
     <Route path='/setting'  element={<h1>Setting Page</h1>}/>
@@ -41,6 +49,8 @@ function App() {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
 )

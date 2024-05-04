@@ -8,11 +8,16 @@ import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 
 import { auth, db, provider } from './firebase'
 import { doc, getDoc, setDoc } from "firebase/firestore"; 
 
+import { useSelector, useDispatch } from 'react-redux';
+import { storeObject } from '../store/actions';
 
 export default function LogIn() {
 
-    const [ logInData, setLogInData ] = useState({ email:"", password:"" });
-    const [ fetchData, setFetchData ] = useState({});
+  const dispatch = useDispatch();
+  
+
+  const [ logInData, setLogInData ] = useState({ email:"", password:"" });
+  const [ fetchData, setFetchData ] = useState({});
     
 const handleChnage = (e) => {
         setLogInData((pre)=> ({
@@ -32,7 +37,7 @@ const handleSubmit = async(e) => {
             const docSnap = await getDoc(doc(db, "userData", auth.currentUser.uid));
 
     //Store data to state by redux
-            setFetchData(docSnap.data());
+            dispatch(storeObject(docSnap.data()));
 
         }
         catch(error){
@@ -65,20 +70,20 @@ const handleSubmit = async(e) => {
           });
 
           //Store data to state by redux
-          setFetchData({
-                    name:user.displayName,
-                    email: user.email,
-                    userId: user.uid,
-                    photo: user.photoURL,
-                    wordRaceScore: 0,
-                    WPM: 0
-                  });
+          dispatch(storeObject({
+                                name:user.displayName,
+                                email: user.email,
+                                userId: user.uid,
+                                photo: user.photoURL,
+                                wordRaceScore: 0,
+                                WPM: 0
+          }));
           
         }
         else{    // Data is already present in database
-          setFetchData({
+          dispatch(storeObject({
             ...docSnap.data(),
-          });
+          }));
          }
       }
     catch (err) {
@@ -86,7 +91,6 @@ const handleSubmit = async(e) => {
       }
 }
 
-// console.log(fetchData);
 
   return (
     <div className={style.main} >

@@ -1,14 +1,25 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import style from '../CSSFiles/WordRace.module.css'
 import wordList from '../Words.js'
 
 export default function WordRace() {
-  const speed = 1.5;
-  const [top, setTop] = useState(0);
-  const [left, setLeft] = useState(100);  
+
+  const height = 500;
+  const width = 900;
+  const topDafaultVal = 10;
+  const leftDafaultVal = 120;
+  const speed = 5;
+
+  const [top, setTop] = useState(topDafaultVal);
+  const [left, setLeft] = useState(leftDafaultVal);  
   const [ rankNo, setRankNo ] = useState(10);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const word = wordList[currentWordIndex];
+  const [isMatched, setIsMatched] = useState(false);
+  const [inputWord, setInputWord] = useState("");
+
+  const [score, setScore] = useState(0);
+
 
 
   const falling_word = useMemo(() => {
@@ -23,7 +34,8 @@ export default function WordRace() {
     let animationFrameId;
     const animate = () => {
       setTop((prevTop) => {
-        if (prevTop + speed >= 300) {
+        if (prevTop + speed >= height) {
+          handleMatch();
           return 0;
         }
         return prevTop + speed;
@@ -36,6 +48,40 @@ export default function WordRace() {
     };
   }, []);
 
+  useEffect(() => {
+    if(isMatched){
+      handleMatch();
+    }
+  },[isMatched]);
+
+  const handleMatch = () => {
+    console.log("matxh tr");
+    setTop(topDafaultVal);
+    // setLeft(Math.floor(Math.random() * width));
+    setLeft(Math.floor(Math.random() * (width - leftDafaultVal + 1)) + leftDafaultVal);
+    setCurrentWordIndex(Math.floor(Math.random() * 111));
+    setIsMatched(false);
+    setInputWord("");
+  };
+  console.log(left);
+
+  const handleSubmit = useCallback(
+    () => { 
+      if (inputWord === word) {
+        setIsMatched(true);
+        setScore(score + 1);
+      }
+    },
+    [inputWord, score]
+  );
+
+  const handleEnter = (e) => {
+    if(e.key === "Enter"){
+      handleSubmit();
+    }
+  };
+
+
 
   return (
     <div className={style.mainWorkspace}>
@@ -46,9 +92,21 @@ export default function WordRace() {
           </div>
 
         </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Type Here" aria-label="Type Here" aria-describedby="button-addon2" />
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+        <div className="input-group mb-3">
+          <input type="text" 
+                  className="form-control" 
+                  placeholder="Type Here" 
+                  aria-label="Type Here" 
+                  aria-describedby="button-addon2" 
+                  onKeyPress={handleEnter}
+                  onChange={(e)=> setInputWord(e.target.value)}
+                  value={inputWord}
+          />
+          <button id="button-addon2"
+                  className="btn btn-outline-secondary"
+                  type="button" 
+                  onClick={handleSubmit}
+          >Button</button>
         </div>
       </div>
 
@@ -57,7 +115,7 @@ export default function WordRace() {
       <div className={style.gameScore}>
         <div className={style.currentScore}>
             <p className={style.currentScore_title}>Current Score</p>
-            <p className={style.currentScore_data}>200</p>
+            <p className={style.currentScore_data}>{score}</p>
         </div>
         <div className={style.highestScore}>
             <p className={style.currentScore_title}>Highest Score</p>

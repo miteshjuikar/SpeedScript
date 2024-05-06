@@ -32,6 +32,7 @@ export default function WordRace() {
       const highScoreData = await getDoc(doc(db, "userData", "highScore"));
       setHighScore(highScoreData.data().highScore);
     }
+
     callFunction();
   },[]);
 

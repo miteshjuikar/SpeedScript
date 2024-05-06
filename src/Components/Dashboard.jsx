@@ -5,36 +5,48 @@ import Icon from '../assets/typingSymbol.png'
 import { useNavigate } from 'react-router-dom';
 
 import {db } from './firebase'
-import { doc, getDoc } from "firebase/firestore"; 
+import { collection, doc, getDoc, getDocs, limit, orderBy, query } from "firebase/firestore"; 
                   
 export default function Dashboard() {
 
-  const [ highScore, setHighScore ] = useState(0);
+  const [ highScoreData, setHighScoreData ] = useState();
+  const [ bestScoreList, setBestScoreList] = useState();
 
-  const scoreData =  [
-    {"name":"Mitesh Juikar","wordRaceScore":1000,"WPM":16},
-    {"name":"Parag bhosale","wordRaceScore":900,"WPM":18}
-  ]
+  const [ rankNo, setRankNo ] = useState(10);
+  
+// Dommy data
+  // const scoreData =  [
+  //   {"name":"Mitesh Juikar","wordRaceScore":1000,"WPM":16},
+  //   {"name":"Parag bhosale","wordRaceScore":900,"WPM":18}
+  // ]
 
-//fetching data from database
-  useEffect(() => {
-    const fetchHighscore = async() => {
-      try{
-        // const highScore = await getDoc(doc(db, "userData", "highScore"))
-        const docSnap = await getDoc(doc(db, "userData", "highScore"));
-        setHighScore(docSnap.data().highScore);
+//fetching first 4 high score data from database
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const q = query(collection(db, "userData"),orderBy("wordRaceScore", "desc"),limit(4));
+      try {
+        const querySnapshot = await getDocs(q);
+        const newData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setHighScoreData( { name: newData[0].name,
+                            highScore: newData[0].wordRaceScore}
+                        );
+        setBestScoreList(newData);
+      } catch (error) {
+        console.error("Error getting highest score:", error);
       }
-      catch(error){
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      };
-    }
-    fetchHighscore();
-  },[])
+    };
+    fetchData();
+  }, []);
+
 
   const navigate = useNavigate();
 
   return (
+    <>
+    {highScoreData &&
     <div className={style.dashboardpage}>
       <div>
         <h2 className={style.headerText}>
@@ -76,24 +88,27 @@ export default function Dashboard() {
 
         <div className={style.score}>
           <div className={style.winnerName}>
-            <h3>🎊 Congratulations Mitesh Juikar 🎊</h3>
-            <p>for highest score of <span style={{ fontWeight: 'bold' }}>{highScore}</span></p>
+            <h3>🎊 Congratulations {highScoreData.name} 🎊</h3>
+            <p>for highest score of <span style={{ fontWeight: 'bold' }}>{highScoreData.highScore}</span></p>
           </div>
           
 
         <div className={style.scoreList} >
         <p className={style.bestScoreList}>Best Score List</p>
-            {scoreData.map((data,i)=>{
+            {bestScoreList.map((data,i)=>{
               return(<div className={style.scoreItems} key={i+1}>
-                        <img src={Icon} className={style.userProfile} />
+                        <img src={data.photo} className={style.userProfile} />
                         <div className={style.scoreItems_rank}>{i+1}</div>
                         <div className={style.scoreItems_name}>
                           <p className={style.parColor}>Word Race</p>
                           <p>{data.name}</p>
                         </div>
+                        <div className={style.rank}>
+                          <img src={`https://firebasestorage.googleapis.com/v0/b/typing-trainer-ec708.appspot.com/o/badge%2Fbadge${(4-i)}.png?alt=media&token=e74041a6-5bd5-4eea-ba2d-0ec35b60c026`}  width="50" height="50"/>
+                        </div>
                         <div className={style.scoreItems_score}>
-                        <p>{data.wordRaceScore}</p>
-                        <p>{data.WPM}<span className={style.paraSpan}>w/m</span></p>
+                          <p>{data.wordRaceScore}</p>
+                          <p>{data.WPM}<span className={style.paraSpan}>w/m</span></p>
                         </div>
                     </div>)
             })}
@@ -104,5 +119,7 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
+}
+  </>
   )
 }

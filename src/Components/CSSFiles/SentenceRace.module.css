@@ -45,6 +45,7 @@ input.input_field{
     opacity: 0;
     z-index: -999;
     position: absolute;
+    
 }
 
 .active{

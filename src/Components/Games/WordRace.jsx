@@ -11,7 +11,7 @@ export default function WordRace() {
   const width = 900;
   const topDefaultVal = 10;
   const leftDafaultVal = 120;
-  const speed = 1.5;
+  const speed = 0.5;
 
   const [top, setTop] = useState(topDefaultVal);
   const [left, setLeft] = useState(leftDafaultVal);  

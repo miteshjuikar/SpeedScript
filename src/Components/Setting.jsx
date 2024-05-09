@@ -64,9 +64,11 @@ export default function Setting() {
 
   return (
     <div className={style.mainSetting}>
-
+        <div className={style.imageUserId}>
         <div className={style.circle}>
             <img src={userDetails.photo} alt="Profile Image" />
+        </div>
+            <label htmlFor="userId" className="form-label">{settingData.name}</label>
         </div>
 
     <div className={style.feedback_container}>

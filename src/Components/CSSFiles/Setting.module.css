@@ -38,4 +38,13 @@
     height: auto; /* Maintains aspect ratio */
     display: block; /* Ensures the image is displayed as a block element */
 }
+.imageUserId{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    label{
+        font-size: 20px;
+    }
+}
 

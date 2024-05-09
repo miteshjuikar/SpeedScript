@@ -7,6 +7,7 @@
     min-width: 1190px; */
 }
 .headerText{
+    min-width: 700px;
     padding: 10px;
     font-weight: 400;
 }
@@ -148,5 +149,29 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
+}
+
+.header{
+    display: flex;
+    
+    width: 90vw;
+    justify-content: space-between;
+}
+.profileImage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.circle{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden; 
+    margin-top: 5px;
+
+    img {
+        width: 100%; 
+   
+    }
 }
 

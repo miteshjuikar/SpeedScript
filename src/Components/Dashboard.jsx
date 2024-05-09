@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import {db } from './firebase'
 import { collection, doc, getDoc, getDocs, limit, orderBy, query } from "firebase/firestore"; 
+import { useSelector } from 'react-redux';
 
 
 export default function Dashboard() {
@@ -15,6 +16,7 @@ export default function Dashboard() {
 
   const [ rankNo, setRankNo ] = useState(10);
   
+  const userDetails = useSelector(state => state.myObject)
 // Dummy data
   // const scoreData =  [
   //   {"name":"Mitesh Juikar","wordRaceScore":1000,"WPM":16},
@@ -51,7 +53,7 @@ export default function Dashboard() {
     <>
     {highScoreData &&
     <div className={style.dashboardpage}>
-      <div>
+      <div className={style.header}>
         <h2 className={style.headerText}>
           <TypeAnimation
           sequence={[
@@ -65,6 +67,14 @@ export default function Dashboard() {
           style={{ fontSize: '1.5em' }}
           />
         </h2>
+
+        <div className={style.profileImage}>
+          <div className={style.circle}>
+              <img src={userDetails.photo} alt="Profile Image" />
+          </div>
+              <p>{userDetails.name}</p> 
+        </div>
+        
       </div>
       <div className={style.secondDiv}>
         <div className={style.games}>

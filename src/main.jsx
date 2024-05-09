@@ -20,6 +20,7 @@ import SentenceRace from './Components/Games/SentenceRace'
 import { Provider } from 'react-redux'
 import store from './store/store' 
 import Authentication from './Components/Authentication'
+import Setting from './Components/Setting'
 
 
 
@@ -32,7 +33,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path='/dashboard' element={<Dashboard />}/>
       <Route path='/wordRace' element={<WordRace />}/>
       <Route path='/sentenceRace' element={<SentenceRace />}/>
-      <Route path='/setting'  element={<h1>Setting Page</h1>}/>
+      <Route path='/setting'  element={<Setting />}/>
       <Route path='/feedback' element={<Feedback />}/>
       <Route path='/tips' element={<Tips />}/>
     </Route>

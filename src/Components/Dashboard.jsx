@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 import {db } from './firebase'
 import { collection, doc, getDoc, getDocs, limit, orderBy, query } from "firebase/firestore"; 
-                  
+
+
 export default function Dashboard() {
 
   const [ highScoreData, setHighScoreData ] = useState();
@@ -14,11 +15,13 @@ export default function Dashboard() {
 
   const [ rankNo, setRankNo ] = useState(10);
   
-// Dommy data
+// Dummy data
   // const scoreData =  [
   //   {"name":"Mitesh Juikar","wordRaceScore":1000,"WPM":16},
   //   {"name":"Parag bhosale","wordRaceScore":900,"WPM":18}
   // ]
+
+ 
 
 //fetching first 4 high score data from database
   React.useEffect(() => {
@@ -91,7 +94,6 @@ export default function Dashboard() {
             <h3>🎊 Congratulations {highScoreData.name} 🎊</h3>
             <p>for highest score of <span style={{ fontWeight: 'bold' }}>{highScoreData.highScore}</span></p>
           </div>
-          
 
         <div className={style.scoreList} >
         <p className={style.bestScoreList}>Best Score List</p>

@@ -7,12 +7,13 @@ import { db } from '../firebase.js';
 
 export default function WordRace() {
 
+
   const height = 500;
   const width = 900;
   const topDefaultVal = 10;
   const leftDafaultVal = 120;
-  const speed = 0.5;
 
+  
   const [top, setTop] = useState(topDefaultVal);
   const [left, setLeft] = useState(leftDafaultVal);  
   const [ rankNo, setRankNo ] = useState(10);
@@ -20,19 +21,21 @@ export default function WordRace() {
   const word = wordList[currentWordIndex];
   const [isMatched, setIsMatched] = useState(false);
   const [inputWord, setInputWord] = useState("");
-
+  
   const [ pause, setPause ] = useState(false);
   const [score, setScore] = useState(0);
-
+  
   const [ highScore, setHighScore ] = useState();
   const myData = useSelector(state => state.myObject);
-
+  const speed = myData.speed;
+  
+  
   useEffect(()=>{
     const callFunction = async() => {
       const highScoreData = await getDoc(doc(db, "userData", "highScore"));
       setHighScore(highScoreData.data().highScore);
     }
-
+    
     callFunction();
   },[]);
 

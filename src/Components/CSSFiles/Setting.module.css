@@ -1,0 +1,41 @@
+.mainSetting{
+    margin-left: 90px;
+    margin-top: 30px;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+.feedback_container{   
+    header{
+        font-size: 36px;
+        font-weight: 500;
+    } 
+    .form{
+        width: 400px;
+    }
+    option{
+        color: black;
+    }
+}
+.submitButton{
+
+    position: relative;
+    left: 160px;
+    margin: 10px;
+}
+
+.circle {
+    margin-top: 50px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* This makes it a circle */
+    overflow: hidden; /* This ensures the image doesn't overflow the circle */
+}
+
+.circle img {
+    width: 100%; /* Ensures the image takes up the full space of the circle */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Ensures the image is displayed as a block element */
+}
+

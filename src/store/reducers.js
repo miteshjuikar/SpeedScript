@@ -1,8 +1,9 @@
 // reducers.js
-import { STORE_OBJECT } from './actionTypes';
+import { STORE_OBJECT, userDetailsObject } from './actionTypes';
 
 const initialState = {
-  myObject: {}
+  myObject: {},
+  product: {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,6 +13,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         myObject: action.payload
       };
+      
+      case userDetailsObject:
+        return {
+          ...state,
+          product: action.payload,
+        };
+
     default:
       return state;
   }

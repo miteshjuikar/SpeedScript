@@ -17,7 +17,7 @@ export default function LogIn() {
   const navigate = useNavigate();
 
   const [ logInData, setLogInData ] = useState({ email:"", password:"" });
-  const [ fetchData, setFetchData ] = useState({});
+
     
 const handleChnage = (e) => {
         setLogInData((pre)=> ({
@@ -68,7 +68,8 @@ const handleSubmit = async(e) => {
             userId: user.uid,
             photo: user.photoURL,
             wordRaceScore: 0,
-            WPM: 0
+            WPM: 0,
+            speed: 1.5
           });
 
           //Store data to state by redux
@@ -78,7 +79,8 @@ const handleSubmit = async(e) => {
                                 userId: user.uid,
                                 photo: user.photoURL,
                                 wordRaceScore: 0,
-                                WPM: 0
+                                WPM: 0,
+                                speed: 1.5
           }));
           
         }

@@ -188,7 +188,7 @@ const handleSave = async() => {
             <img src={`https://firebasestorage.googleapis.com/v0/b/typing-trainer-ec708.appspot.com/o/badge%2Fbadge${rankNo}.png?alt=media&token=e74041a6-5bd5-4eea-ba2d-0ec35b60c026`}/>
         </div>
         <button id="button-addon2"
-                  className={`btn btn-outline-secondary ${style.button}`}
+                  className={style.saveButton}
                   type="button" 
                   onClick={handleSave}
           >Save</button>

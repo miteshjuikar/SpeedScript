@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import style from '../CSSFiles/WordRace.module.css'
-import wordList from '../Words.js'
+import { easy, medium, hard, difficult, wordL } from '../Words.js'
 import { useSelector } from 'react-redux';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase.js';
@@ -17,8 +17,6 @@ export default function WordRace() {
   const [top, setTop] = useState(topDefaultVal);
   const [left, setLeft] = useState(leftDafaultVal);  
   const [ rankNo, setRankNo ] = useState(10);
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const word = wordList[currentWordIndex];
   const [isMatched, setIsMatched] = useState(false);
   const [inputWord, setInputWord] = useState("");
   
@@ -29,6 +27,9 @@ export default function WordRace() {
   const myData = useSelector(state => state.myObject);
   const speed = myData.speed;
   
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const wordList = wordL[myData.wordLevel]
+  const word = wordList[currentWordIndex];
   
   useEffect(()=>{
     const callFunction = async() => {
@@ -78,7 +79,7 @@ export default function WordRace() {
   const handleMatch = () => {
     setTop(topDefaultVal);
     setLeft(Math.floor(Math.random() * (width - leftDafaultVal + 1)) + leftDafaultVal);
-    setCurrentWordIndex(Math.floor(Math.random() * 111));
+    setCurrentWordIndex(Math.floor(Math.random() * wordList.length));
     setIsMatched(false);
     setInputWord("");
   };
@@ -137,7 +138,8 @@ const handleSave = async() => {
 }
 
   return (
-    <div className={style.mainWorkspace}>
+    <>
+    {myData && <div className={style.mainWorkspace}>
       <div className={style.gameWorkspace}>
         <div className={style.workspaceContainer}>
           <div style={falling_word}>
@@ -192,5 +194,7 @@ const handleSave = async() => {
           >Save</button>
       </div>
     </div>
+}    
+</>
   )
 }

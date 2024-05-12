@@ -43,7 +43,8 @@ const handleSubmit = async(e) => {
             photo: photoURL[Math.floor((Math.random() * 7) + 1)],
             wordRaceScore: 0,
             wpm: 0,
-            speed: 1.5
+            speed: 1.5,
+            wordLevel: 1
         });
         navigate("/logIn");
     }

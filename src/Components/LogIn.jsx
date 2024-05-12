@@ -69,7 +69,8 @@ const handleSubmit = async(e) => {
             photo: user.photoURL,
             wordRaceScore: 0,
             WPM: 0,
-            speed: 1.5
+            speed: 1.5,
+            wordLevel: 1
           });
 
           //Store data to state by redux
@@ -80,7 +81,8 @@ const handleSubmit = async(e) => {
                                 photo: user.photoURL,
                                 wordRaceScore: 0,
                                 WPM: 0,
-                                speed: 1.5
+                                speed: 1.5,
+                                wordLevel: 1
           }));
           
         }

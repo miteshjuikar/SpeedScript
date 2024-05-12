@@ -3,7 +3,6 @@ import style from './CSSFiles/Setting.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from './firebase'
 import { doc, updateDoc } from "firebase/firestore"; 
-import { STORE_OBJECT } from '../store/actionTypes';
 import { storeObject } from '../store/actions';
 
 
@@ -16,6 +15,7 @@ export default function Setting() {
                                                         name: userDetails.name,
                                                         photo: userDetails.photo,
                                                         speed: userDetails.speed,
+                                                        wordLevel: userDetails.wordLevel,
                                                         userId: userDetails.userId,
 
                                                     });
@@ -31,27 +31,27 @@ export default function Setting() {
  
         dispatch(storeObject({
                                 ...userDetails,
-                                speed: parseFloat(e.target.value)
+                                [e.target.id]: parseFloat(e.target.value)
                             }));
 
         setSettingData((pre) =>({
             ...pre,
-            speed: parseFloat(e.target.value)
+            [e.target.id]: parseFloat(e.target.value)
         }))
     }
 
     const handleSubmit = () => {
   
-        const docRef = doc(db, 'userData',userDetails.userId);
-        
+        const docRef = doc(db, 'userData',userDetails.userId);   
         updateDoc(docRef, settingData)
           .then(() => {
-             
+
             dispatch(storeObject({
                 ...userDetails,
                 name: settingData.name,
                 photo: settingData.photo,
                 speed: settingData.speed,
+                wordLevel: settingData.wordLevel,
             }));
 
             alert('Document updated successfully.');
@@ -87,13 +87,23 @@ export default function Setting() {
         </div>
         <div className="mb-3">
             <label htmlFor="speed" className="form-label">Speed</label>
-            <select className="form-select" id="speed" onChange={speedInterger} >
-                <option defaultValue={1.5}>Select</option>
+            <select className="form-select" defaultValue={userDetails.speed} id="speed" onChange={speedInterger} >
+                <option >Select</option>
                 <option value={0.5}>0.5</option>
                 <option value={1}>1</option>
                 <option value={1.5}>1.5</option>
                 <option value={2}>2</option>
                 <option value={2.5}>2.5</option>
+            </select>
+        </div>
+        <div className="mb-3">
+            <label htmlFor="wordLevel" className="form-label">Word Hardness Level</label>
+            <select className="form-select" defaultValue={userDetails.wordLevel} id="wordLevel" onChange={speedInterger} >
+                <option defaultValue={1}>Select</option>
+                <option value={0}>Easy</option>
+                <option value={1}>Medium</option>
+                <option value={2}>Hard</option>
+                <option value={3}>Difficult</option>
             </select>
         </div>
         <div className="mb-3">

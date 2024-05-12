@@ -1,25 +1,8 @@
-export default[
-    'apple', 'banana', 'chocolate', 'elephant', 'forest',
-    'guitar', 'happiness', 'island', 'jazz', 'kangaroo',
-    'lemon', 'mountain', 'ocean', 'piano', 'quokka',
-    'rainbow', 'sunset', 'tiger', 'umbrella', 'volcano',
-    'waterfall', 'xylophone', 'yacht', 'zeppelin',
-    'astronomy', 'butterfly', 'candle', 'diamond', 'eclipse',
-    'fireworks', 'giraffe', 'hurricane', 'igloo', 'jungle',
-    'koala', 'lighthouse', 'moonlight', 'narwhal', 'orchestra',
-    'paradise', 'quasar', 'rocket', 'seashell', 'tornado',
-    'unicorn', 'violet',"parag","bhosale","config","state","bank",
-    "currency","india","modify","bore","nothing", 'whale', 'config',
-    'zebra', 'acoustic', 'blossom', 'carousel', 'dolphin',
-    'eucalyptus', 'flamingo', 'garden', 'harmony', 'iceberg',
-    'jigsaw', 'kiwi', 'lullaby', 'monsoon', 'nebula',
-    'octopus', 'penguin', 'quokka', 'rainforest', 'sunflower',
-    'toucan', 'umbrella', 'volcano', 'waterfall', 'netbean',
-    'yacht', 'zeppelin', 'alpaca', 'bamboo', 'chameleon',
-    'dandelion', 'electric', 'flute', 'gazelle', 'hummingbird',
-    'iguana', 'jackal', 'omkar', 'lemur', 'mango',
-    'nightingale', 'opera', 'papaya', 'quail', 'rhinoceros',
-    'saxophone', 'tiger', 'umbrella', 'violet', 'whale',
-    'update', 'yoga', 'zebra'
-];
+export const easy = ["easy","qwer"];
+export const medium = ["medium","qwer"];
+export const hard = ["hard","qwer"];
+export const difficult = ["difficult","qwer"];
+
+export const wordL = [ easy, medium, hard, difficult ]
+
   

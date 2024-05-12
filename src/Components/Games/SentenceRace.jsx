@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import style from '../CSSFiles/SentenceRace.module.css'
+import { useSelector } from 'react-redux';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export default function SentenceRace() {
 
   const paragraph = "A paraphrase or rephrase is the rendering of the same text in different words without losing the meaning of the text itself. More often than not, a paraphrased text can convey its meaning better than the original words. In other words, it is a copy of the text in meaning, but which is different from the original.";
-
 
   const maxTime = 60;
   const [ timeLeft, setTimeLeft ] = useState(maxTime);
@@ -14,10 +16,13 @@ export default function SentenceRace() {
 
   const [ charIndex, setCharIndex ] = useState(0);
   const [ isTyping, setIsTyping ] = useState(false);
-  const inputRef = useRef(null);
+  const inputRef = useRef(null);  
   const charRefs = useRef([]);
 
   const [ correctWrong, setCurrectWrong ] = useState([]);
+
+  const myData = useSelector(state => state.myObject);
+  const userId = myData.userId;
 
 
   useEffect(()=>{
@@ -92,6 +97,19 @@ export default function SentenceRace() {
     inputRef.current.focus();
   }
 
+  const handleSave = () => {
+    const docRef = doc(db, 'userData',userId);
+    setIsTyping(false);
+
+    updateDoc(docRef, {WPM: WPM})
+        .then(() => {
+          alert('Document updated successfully.');
+        })
+        .catch((error) => {
+          alert('Error updating document:', error);
+        });
+  }
+
   return (
     <div className={style.container}>
 
@@ -109,7 +127,10 @@ export default function SentenceRace() {
         <p>Mistakes: <strong>{mistake}</strong></p> 
         <p>WPM: <strong>{WPM}</strong></p> 
         <p>CPM: <strong>{CPM}</strong></p> 
-        <button type="button" className="btn btn-primary" onClick={resetGame}>Try Again</button>
+        <div className={style.buttons} >
+          <button type="button" className="btn btn-primary" onClick={resetGame}>Try Again</button>
+          <button type="button" className="btn btn-primary" onClick={handleSave}>Save</button>
+        </div>
       </div>
     </div>
   </div>

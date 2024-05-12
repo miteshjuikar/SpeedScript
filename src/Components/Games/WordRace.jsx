@@ -1,19 +1,17 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import style from '../CSSFiles/WordRace.module.css'
-import { easy, medium, hard, difficult, wordL } from '../Words.js'
+import { wordL } from '../Words.js'
 import { useSelector } from 'react-redux';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase.js';
 
 export default function WordRace() {
 
-
   const height = 500;
   const width = 900;
   const topDefaultVal = 10;
   const leftDafaultVal = 120;
 
-  
   const [top, setTop] = useState(topDefaultVal);
   const [left, setLeft] = useState(leftDafaultVal);  
   const [ rankNo, setRankNo ] = useState(10);

@@ -104,7 +104,7 @@ const handleSubmit = async(e) => {
     <div className={style.mainContent}>     
         <img src={Icon} height="100px" width="100px" />
         <div className={style.login_form}>
-            <h1>Welcome to Typing Trainer</h1>
+            <h1>Welcome to SpeedScript</h1>
 
             <form onSubmit={handleSubmit}>
             <div className="mb-3">
